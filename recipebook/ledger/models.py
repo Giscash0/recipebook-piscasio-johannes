@@ -21,8 +21,8 @@ class Recipe(models.Model):
 
 class RecipeIngredient(models.Model):
     quantity = models.CharField(max_length=50)
-    ingredient = models.ForeignKey(Ingredient)
-    recipe = models.ForeignKey(Recipe)
+    ingredient = models.ForeignKey(Ingredient, related_name='recipe')
+    recipe = models.ForeignKey(Recipe, related_name='ingredients')
 
     def __str__(self):
         return f"{self.quantity} of {self.ingredient} for {self.recipe}"
