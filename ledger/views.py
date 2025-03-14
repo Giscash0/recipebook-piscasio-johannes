@@ -29,3 +29,6 @@ recipes = [
 
 def recipe_list(request):
     return render(request, 'recipe_list.html', {"recipes": recipes})
+
+def recipe(request, num=1):
+    return render(request, 'recipe.html', {"recipe": recipes[num-1]})
