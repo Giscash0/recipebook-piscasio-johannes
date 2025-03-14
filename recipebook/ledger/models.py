@@ -11,3 +11,8 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.name
+
+class RecipeIngredient(models.Model):
+    quantity = models.CharField(max_length=50)
+    ingredient = models.ForeignKey(Ingredient)
+    recipe = models.ForeignKey(Recipe)
