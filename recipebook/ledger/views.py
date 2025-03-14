@@ -10,3 +10,8 @@ class recipe_list(ListView):
 class recipe(DetailView):
     model = Recipe
     template_name = 'recipe.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['ingredients'] = self.object.ingredients.all()
+        return context
