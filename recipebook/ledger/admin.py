@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Ingredient, Recipe
+from .models import Ingredient, Recipe, RecipeIngredient
 
 class IngredientAdmin(admin.ModelAdmin):
     model = Ingredient
@@ -7,5 +7,5 @@ class IngredientAdmin(admin.ModelAdmin):
 class RecipeAdmin(admin.ModelAdmin):
     model = Recipe
 
-class RecipeIngredient(admin.ModelAdmin):
-    model = RecipeAdmin
+class RecipeIngredientAdmin(admin.ModelAdmin):
+    model = RecipeIngredient
