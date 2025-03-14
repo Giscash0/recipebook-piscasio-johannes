@@ -9,3 +9,7 @@ class RecipeAdmin(admin.ModelAdmin):
 
 class RecipeIngredientAdmin(admin.ModelAdmin):
     model = RecipeIngredient
+
+admin.site.register(Ingredient, IngredientAdmin)
+admin.site.register(Recipe, RecipeAdmin)
+admin.site.register(RecipeIngredient, RecipeIngredientAdmin)
