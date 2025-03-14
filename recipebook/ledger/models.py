@@ -23,3 +23,6 @@ class RecipeIngredient(models.Model):
     quantity = models.CharField(max_length=50)
     ingredient = models.ForeignKey(Ingredient)
     recipe = models.ForeignKey(Recipe)
+
+    def __str__(self):
+        return f"{self.quantity} of {self.ingredient} for {self.recipe}"
