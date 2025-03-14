@@ -8,4 +8,5 @@ def recipe_list(ListView):
     context_object_name = 'recipes'
 
 def recipe(request, num=1):
-    return render(request, 'recipe.html', {"recipe": recipes[num-1]})
+    model = Recipe
+    template_name = 'recipe.html'
