@@ -10,6 +10,10 @@ class RecipeAdmin(admin.ModelAdmin):
 
 class RecipeIngredientAdmin(admin.ModelAdmin):
     model = RecipeIngredient
+    
+class ProfileInline(admin.StackedInline):
+    model = Profile
+    can_delete = False
 
 admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(Recipe, RecipeAdmin)
