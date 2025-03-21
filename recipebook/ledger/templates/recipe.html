@@ -6,6 +6,7 @@
 <body>
     <h1>Recipe Book</h1>
     <h2>{{ recipe.name }}</h2>
+    <p>By: {{ recipe.author.name }}</p>
     <ul>
         {% for ingredient in recipe.ingredients.all %}
             <li>{{ ingredient.quantity }} {{ ingredient.ingredient.name }}</li>
