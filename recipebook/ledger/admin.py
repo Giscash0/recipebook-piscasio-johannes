@@ -21,3 +21,6 @@ class UserAdmin(admin.ModelAdmin):
 admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(RecipeIngredient, RecipeIngredientAdmin)
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
