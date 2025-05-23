@@ -24,3 +24,30 @@ class RecipeDetail(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['ingredients'] = self.object.ingredients.all()
         return context
+    
+class RecipeCreate(LoginRequiredMixin, CreateView):
+    model = Recipe
+    form_class = RecipeForm
+    template_name = 'newrecipe.html'
+    success_url = reverse_lazy('recipe_list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.POST:
+            context['ingredient_formset'] = IngredientFormSet(self.request.POST)
+        else:
+            context['ingredient_formset'] = IngredientFormSet()
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        ingredient_formset = context['ingredient_formset']
+        if ingredient_formset.is_valid():
+            self.object = form.save(commit=False)
+            self.object.author = self.request.user
+            self.object.save()
+            ingredient_formset.instance = self.object
+            ingredient_formset.save()
+            return super().form_valid(form)
+        else:
+            return self.render_to_response(self.get_context_data(form=form))
