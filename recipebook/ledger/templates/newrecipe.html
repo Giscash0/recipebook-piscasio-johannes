@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Add New Recipe{% endblock %}
+
+{% block headingtext %}Add New Recipe{% endblock %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <fieldset>
+                <legend>Ingredients</legend>
+                {{ ingredient_formset.management_form }}
+                {% for form in ingredient_formset %}
+                    {{ form.as_table }}
+                {% endfor %}
+            </fieldset>
+            <button type="submit">Save Recipe</button>
+        </form>
+    {% else %}
+        <p>Please login to add recipes.</p>
+    {% endif %}
+{% endblock %}
