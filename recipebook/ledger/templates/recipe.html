@@ -2,9 +2,11 @@
 
 {% block title %}{{ recipe.name }}{% endblock %}
 
+{% block headingtext %}Recipe Detail{% endblock %}
+
 {% block content %}
     {% if request.user.is_authenticated %}
-        <h2>{{ recipe.name }}</h2>
+        <h3>{{ recipe.name }}</h2>
         <p>By: {{ recipe.author.name }}</p>
         <ul>
             {% for ingredient in recipe.ingredients.all %}
