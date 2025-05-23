@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ recipe.name }}</title>
-</head>
-<body>
-    <h1>Recipe Book</h1>
-    <h2>{{ recipe.name }}</h2>
-    <ul>
-        {% for ingredient in recipe.ingredients.all %}
-            <li>{{ ingredient.quantity }} {{ ingredient.ingredient.name }}</li>
-        {% endfor %}
-    </ul>
-    <a href="/recipes/list">Back to Recipe List</a>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}{{ recipe.name }}{% endblock %}
+
+{% block headingtext %}Recipe Detail{% endblock %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <h3>{{ recipe.name }}</h2>
+        <p>By: {{ recipe.author.name }}</p>
+        <ul>
+            {% for ingredient in recipe.ingredients.all %}
+                <li>{{ ingredient.quantity }} {{ ingredient.ingredient.name }}</li>
+            {% endfor %}
+        </ul>
+        <a href="/recipes/list">Back to Recipe List</a>
+    {% endif %}
+{% endblock %}
