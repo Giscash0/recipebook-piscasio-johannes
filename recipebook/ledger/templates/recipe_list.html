@@ -5,6 +5,9 @@
 {% block headingtext %}Recipe List{% endblock %}
 
 {% block content %}
+    {% if can_add_recipe %}
+        <a href="{% url 'recipe_add' %}">Add New Recipe</a>
+    {% endif %}
     <ul>
         {% for recipe in recipes %}
             <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.name }}</a></li>
