@@ -51,3 +51,15 @@ class RecipeCreate(LoginRequiredMixin, CreateView):
             return super().form_valid(form)
         else:
             return self.render_to_response(self.get_context_data(form=form))
+        
+class RecipeImageCreate(LoginRequiredMixin, CreateView):
+    model = RecipeImage
+    form_class = RecipeImageForm
+    template_name = 'addimage.html'
+
+    def get_success_url(self):
+        return reverse_lazy('recipe', kwargs={'pk': self.kwargs['pk']})
+
+    def form_valid(self, form):
+        form.instance.recipe = Recipe.objects.get(pk=self.kwargs['pk'])
+        return super().form_valid(form)
