@@ -5,7 +5,7 @@
 {% block headingtext %}Recipe List{% endblock %}
 
 {% block content %}
-    {% if can_add_recipe %}
+    {% if request.user.is_authenticated %}
         <a href="{% url 'recipe_add' %}">Add New Recipe</a>
     {% endif %}
     <ul>
